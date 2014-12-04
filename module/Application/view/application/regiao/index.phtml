@@ -1,0 +1,22 @@
+<h1>Cadastro de Regiões</h1>
+<a href="<?=$this
+->url(
+    'application/default',
+    array(
+        'controller' => 'regiao',
+        'action' => 'edit'
+    )
+)?>">Incluir</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Nome</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?=$this->partialLoop('models.phtml', $this->models)?>
+    </tbody>
+</table>

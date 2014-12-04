@@ -1,0 +1,23 @@
+<tr>
+    <td><a href="<?=
+        $this->url(
+            'application/default',
+            array(
+                'controller' => 'regiao',
+                'action' => 'edit',
+                'key' => $this->codigo
+            )
+        )
+    ?>"><?=$this->codigo?></a></td>
+    <td><?=$this->nome?></td>
+    <td><a href="<?=
+        $this->url(
+            'application/default',
+            array(
+                'controller' => 'regiao',
+                'action' => 'delete',
+                'key' => $this->codigo
+            )
+        )
+    ?>">Excluir</a></td>
+</tr>
