@@ -3,20 +3,21 @@
         $this->url(
             'application/default',
             array(
-                'controller' => 'regiao',
+                'controller' => 'participante',
                 'action' => 'edit',
-                'key' => $this->codigo
+                'key' => $this->codigo_partic
             )
         )
-    ?>"><?=$this->codigo?></a></td>
+    ?>"><?=$this->codigo_partic?></a></td>
     <td><?=$this->nome?></td>
+    <td><?=$this->regiao?></td>
     <td><a href="<?=
         $this->url(
             'application/default',
             array(
-                'controller' => 'regiao',
+                'controller' => 'participante',
                 'action' => 'delete',
-                'key' => $this->codigo
+                'key' => $this->codigo_partic
             )
         )
     ?>">Excluir</a></td>

@@ -19,9 +19,9 @@
 
 return array(
     'db' => array(
-    	'driver' => 'Pdo',
-    	'dsn' => 'mysql:dbname=phpconf2014;host=localhost',
+    	'driver' => 'PDO',
+    	'dsn' => 'mysql:dbname=phpconf2014',
     	'username' => 'root',
-    	'password' => ''
+    	'password' => 'root'
     )    
 );

@@ -9,6 +9,7 @@
 
 namespace Application;
 
+use Application\Model\ParticipanteTable;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Application\Model\RegiaoTable;
@@ -48,7 +49,13 @@ class Module
         	        $tableGateway = new TableGateway('regioes', $adapter);
         	        
         	        return new RegiaoTable($tableGateway);
-        	    }       
+        	    },
+        	    'ParticipanteTable' => function($sm){
+        	    	$adapter = $sm->get('DbAdapter');
+        	    	$tableGateway = new TableGateway('participantes', $adapter);
+        	    		
+        	    	return new ParticipanteTable($tableGateway);
+        	    }      
             )
         );
     }

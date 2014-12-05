@@ -71,7 +71,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Regiao' => 'Application\Controller\RegiaoController'
+            'Application\Controller\Regiao' => 'Application\Controller\RegiaoController',
+            'Application\Controller\Participante' => 'Application\Controller\ParticipanteController'
         ),
     ),
     'view_manager' => array(

@@ -2,9 +2,11 @@
 
 namespace Application\Model;
 
+use Application\Form\Participante;
 use Zend\Db\TableGateway\TableGatewayInterface;
+use Zend\Db\Sql\Select;
 
-class RegiaoTable
+class ParticipanteTable
 {
     /**
      * @var TableGatewayInterface 
@@ -33,25 +35,52 @@ class RegiaoTable
     
     public function getModels($where = null)
     {
-        return $this->tableGateway->select($where);
+
+        $select = new Select();
+        $select
+//            ->columns(
+//                array(
+//                    'codigo_partic' => 'codigo_partic',
+//                    'nome_participante' => 'nome',
+//                    'codigo_regiao' => 'codigo_regiao'
+//                )
+//            )
+            ->from('participantes')
+            ->join(
+                'regioes',
+                'participantes.codigo_regiao = regioes.codigo',
+                array(
+                    'regiao' => 'nome'
+                )
+            )
+            ->where($where)
+        ;
+
+        $data = $this->tableGateway->selectWith($select);
+
+//        var_dump($data);
+//        exit;
+
+
+        return $data;
     }
     
     public function getModel($key)
     {
         $where = array(
-        	'codigo' => $key
+        	'codigo_partic' => $key
         );
-        
+
         $models = $this->getModels(
             $where
         );
-        
+
         if($models->count() > 0){
             return $models->current();
-        } 
-        
-        return new Regiao();
-        
+        }
+
+        return new Participante();
+
     }
     
     public function delete($key)

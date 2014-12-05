@@ -2,15 +2,16 @@
 
 namespace Application\Form;
 
+use Zend\Form\Element\Select;
 use Zend\Form\Form;
 use Zend\Form\Element\Text;
 use Zend\Form\Element\Hidden;
 use Zend\Form\Element\Submit;
 
-class Regiao extends Form
+class Participante extends Form
 {
 
-    public function __construct($name = 'regiao', array $options = array())
+    public function __construct($name = 'participante', array $options = array())
     {
         parent::__construct($name, $options);
         
@@ -25,7 +26,19 @@ class Regiao extends Form
         $this->add($elementOrFieldset);
         
         // Field Hidden
-        $elementOrFieldset = new Hidden('codigo');
+        $elementOrFieldset = new Hidden('codigo_partic');
+        
+        $this->add($elementOrFieldset);
+
+
+        // Field Hidden
+        $elementOrFieldset = new Hidden('codigo_regiao');
+
+        $this->add($elementOrFieldset);
+
+        // Input codigo regiao
+        $elementOrFieldset = new Select('codigo_regiao');
+        $elementOrFieldset->setLabel('Codigo Regiao:');
         
         $this->add($elementOrFieldset);
         

@@ -4,18 +4,18 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Application\Form\Regiao as RegiaoForm;
-use Application\Model\Regiao;
+use Application\Form\Participante as ParticipanteForm;
+use Application\Model\Participante;
 
 /**
- * RegiaoController
+ * ParticipanteController
  *
  * @author
  *
  * @version
  *
  */
-class RegiaoController extends AbstractActionController
+class ParticipanteController extends AbstractActionController
 {
 
     /**
@@ -23,8 +23,8 @@ class RegiaoController extends AbstractActionController
      */
     public function indexAction()
     {
-        $models = $this->getTable('Regiao')->getModels(); 
-        
+        $models = $this->getTable('Participante')->getModels();
+
         // TODO Auto-generated RegiaoController::indexAction() default action
         return ['models'=>$models];
     }
@@ -32,39 +32,39 @@ class RegiaoController extends AbstractActionController
     public function editAction()
     {
         $key = $this->params('key');
-        
-        $model = $this->getTable('Regiao')
+
+        $model = $this->getTable('Participante')
             ->getModel($key);
-        
-        $form = new RegiaoForm();
+
+        $form = new ParticipanteForm();
         $form->setAttribute(
             'action', 
             $this->url()->fromRoute(
                 'application/default',
                 array(
-        	        'controller' => 'regiao',
+        	        'controller' => 'participante',
                     'action' => 'save'
                 )
             )
         );
-        
+
         $form->bind($model);
-        
+
         return ['form' => $form];
     }
     
     public function saveAction()
     {
-        $regiao = Regiao::getFromRequest(
+        $participante = Participante::getFromRequest(
             $this->getRequest()
         );
 
-        $this->getTable('Regiao')->save($regiao);
+        $this->getTable('Participante')->save($participante);
         
         return $this->redirect()->toRoute(
             'application/default',
             array(
-                'controller' => 'regiao'
+                'controller' => 'participante'
             )
         );
 
@@ -74,12 +74,12 @@ class RegiaoController extends AbstractActionController
     {
     	$key = $this->params('key');
         
-    	$this->getTable('Regiao')->delete($key);
+    	$this->getTable('Participante')->delete($key);
     	
     	return $this->redirect()->toRoute(
             'application/default',
             array(
-                'controller' => 'regiao'
+                'controller' => 'participante'
             )
         );
     
