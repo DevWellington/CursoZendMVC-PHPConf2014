@@ -2,9 +2,9 @@
 
 namespace Application\Model;
 
-use Application\Form\Participante;
-use Zend\Db\TableGateway\TableGatewayInterface;
-use Zend\Db\Sql\Select;
+use Application\Form\Participante,
+    Zend\Db\TableGateway\TableGatewayInterface,
+    Zend\Db\Sql\Select;
 
 class ParticipanteTable
 {
@@ -21,72 +21,66 @@ class ParticipanteTable
     public function save($model)
     {
         $set = $model->toArray();
-        
-        if(empty($model->codigo)){
+
+        if(empty($model->participantes_codigo)){
             $this->tableGateway->insert($set);
         } else {
             $where = array(
-            	'codigo' => $model->codigo,
+            	'codigo' => $model->participantes_codigo,
             );
 
             $this->tableGateway->update($set, $where);
         } 
     }
-    
-    public function getModels($where = null)
-    {
 
+    public function getModels($where = [])
+    {
         $select = new Select();
         $select
-//            ->columns(
-//                array(
-//                    'codigo_partic' => 'codigo_partic',
-//                    'nome_participante' => 'nome',
-//                    'codigo_regiao' => 'codigo_regiao'
-//                )
-//            )
-            ->from('participantes')
+            ->columns(
+                [
+                    'participantes_codigo' => 'codigo',
+                    'nome' => 'nome',
+                    'codigo_regiao' => 'codigo_regiao'
+                ]
+            )
+            ->from(['p' => 'participantes'])
             ->join(
                 'regioes',
-                'participantes.codigo_regiao = regioes.codigo',
-                array(
+                'p.codigo_regiao = regioes.codigo',
+                [
                     'regiao' => 'nome'
-                )
+                ]
             )
             ->where($where)
+            ->order('p.codigo')
         ;
 
         $data = $this->tableGateway->selectWith($select);
-
-//        var_dump($data);
-//        exit;
-
+//        var_dump($data);exit;
 
         return $data;
     }
     
     public function getModel($key)
     {
-        $where = array(
-        	'codigo_partic' => $key
-        );
+        $where = [
+            'p.codigo' => $key
+        ];
 
-        $models = $this->getModels(
-            $where
-        );
+        $models = $this->getModels($where);
 
         if($models->count() > 0){
             return $models->current();
         }
 
         return new Participante();
-
     }
     
     public function delete($key)
     {
         $where = array(
-        	'codigo' => $key
+        	'participantes.codigo' => $key
         );
         
         $this->tableGateway->delete($where);

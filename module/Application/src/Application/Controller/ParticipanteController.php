@@ -3,7 +3,6 @@
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
 use Application\Form\Participante as ParticipanteForm;
 use Application\Model\Participante;
 
@@ -25,7 +24,6 @@ class ParticipanteController extends AbstractActionController
     {
         $models = $this->getTable('Participante')->getModels();
 
-        // TODO Auto-generated RegiaoController::indexAction() default action
         return ['models'=>$models];
     }
     
@@ -33,12 +31,15 @@ class ParticipanteController extends AbstractActionController
     {
         $key = $this->params('key');
 
-        $model = $this->getTable('Participante')
-            ->getModel($key);
+        if (isset($key))
+            $model = $this
+                ->getTable('Participante')
+                ->getModel($key)
+            ;
 
         $form = new ParticipanteForm();
         $form->setAttribute(
-            'action', 
+            'action',
             $this->url()->fromRoute(
                 'application/default',
                 array(
@@ -48,7 +49,8 @@ class ParticipanteController extends AbstractActionController
             )
         );
 
-        $form->bind($model);
+        if (isset($model))
+            $form->bind($model);
 
         return ['form' => $form];
     }
@@ -73,7 +75,7 @@ class ParticipanteController extends AbstractActionController
     public function deleteAction()
     {
     	$key = $this->params('key');
-        
+
     	$this->getTable('Participante')->delete($key);
     	
     	return $this->redirect()->toRoute(

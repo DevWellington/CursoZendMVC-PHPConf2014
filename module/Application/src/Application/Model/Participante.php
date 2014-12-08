@@ -6,25 +6,25 @@ use Zend\Stdlib\RequestInterface;
 
 class Participante
 {
-    public $codigo_partic;
+    public $participantes_codigo;
     public $nome;
     /**
      * @var Regiao
      */
     public $regiao;
-    public $codigo_regiao;
-    
+
     public static function getFromRequest(RequestInterface $request)
     {
         $participante = new Participante();
-        
-        $participante->codigo_partic = $request->getPost('codigo_partic');
+
+        $participante->participantes_codigo = $request->getPost('participantes_codigo');
         $participante->nome = $request->getPost('nome');
 
         $participante->regiao = new Regiao();
-        $participante->regiao->codigo = $request->getPost('regiao');
+        $participante->regiao->codigo = $request->getPost('codigo_regiao');
+        $participante->regiao->nome = $request->getPost('nome_regiao');
 
-        $participante->codigo_regiao = $request->getPost('regiao');
+//        $participante->codigo_regiao = $request->getPost('regiao');
         
         return $participante;
     }
@@ -32,17 +32,18 @@ class Participante
     public function toArray()
     {
         // retorna um array dos atributos do objeto
-        return get_object_vars($this);
+        $toArray = get_object_vars($this);
+        $toArray['codigo_regiao'] = $this->regiao->codigo;
+        $toArray['codigo'] = $this->participantes_codigo;
+        unset($toArray['regiao']);
+        unset($toArray['participantes_codigo']);
+
+        return $toArray;
     }
     
     public function getArrayCopy()
     {
-        $set = $this->toArray();
-//        $set['codigo_regiao'] = $this->regiao->nome;
-//
-//        unset($set['regiao']);
-
-        return $set;
+        return $this->toArray();
     }
     
 }

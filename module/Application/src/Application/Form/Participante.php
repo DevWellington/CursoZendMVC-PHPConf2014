@@ -17,7 +17,7 @@ class Participante extends Form
         
         // Method of form
         $this->setAttribute('method', 'post');
-        
+
         // Input
         $elementOrFieldset = new Text('nome');
         $elementOrFieldset->setLabel('Nome:');
@@ -26,19 +26,21 @@ class Participante extends Form
         $this->add($elementOrFieldset);
         
         // Field Hidden
-        $elementOrFieldset = new Hidden('codigo_partic');
-        
-        $this->add($elementOrFieldset);
-
-
-        // Field Hidden
-        $elementOrFieldset = new Hidden('codigo_regiao');
+        $elementOrFieldset = new Hidden('participantes_codigo');
 
         $this->add($elementOrFieldset);
 
-        // Input codigo regiao
-        $elementOrFieldset = new Select('codigo_regiao');
-        $elementOrFieldset->setLabel('Codigo Regiao:');
+
+        // Input Codigo Regiao
+        $elementOrFieldset = new Text('codigo_regiao');
+        $elementOrFieldset->setLabel('Codigo Regiao');
+
+        $this->add($elementOrFieldset);
+
+        // Input nome regiao
+        $elementOrFieldset = new Text('regiao');
+        $elementOrFieldset->setLabel('Nome Regiao:');
+        $elementOrFieldset->setAttributes(['readonly' => 'readonly']);
         
         $this->add($elementOrFieldset);
         
@@ -50,7 +52,5 @@ class Participante extends Form
         
     }
     
-    
-    
-    
+
 }
