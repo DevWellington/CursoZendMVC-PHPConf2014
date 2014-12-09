@@ -21,11 +21,8 @@ class Participante
         $participante->nome = $request->getPost('nome');
 
         $participante->regiao = new Regiao();
-        $participante->regiao->codigo = $request->getPost('codigo_regiao');
-        $participante->regiao->nome = $request->getPost('nome_regiao');
+        $participante->regiao->codigo = $request->getPost('select_regiao');
 
-//        $participante->codigo_regiao = $request->getPost('regiao');
-        
         return $participante;
     }
     

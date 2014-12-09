@@ -32,18 +32,17 @@ class Participante extends Form
 
 
         // Input Codigo Regiao
-        $elementOrFieldset = new Text('codigo_regiao');
+        $elementOrFieldset = new Hidden('codigo_regiao');
         $elementOrFieldset->setLabel('Codigo Regiao');
 
         $this->add($elementOrFieldset);
 
-        // Input nome regiao
-        $elementOrFieldset = new Text('regiao');
-        $elementOrFieldset->setLabel('Nome Regiao:');
-        $elementOrFieldset->setAttributes(['readonly' => 'readonly']);
-        
+        // Select nome regiao
+        $elementOrFieldset = new Select('select_regiao');
+        $elementOrFieldset->setLabel('Regiao:');
+
         $this->add($elementOrFieldset);
-        
+
         // Button
         $elementOrFieldset = new Submit('gravar');
         $elementOrFieldset->setValue('Gravar');

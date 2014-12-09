@@ -2,6 +2,7 @@
 
 namespace Application\Controller;
 
+use Application\Form\Regiao;
 use Zend\Mvc\Controller\AbstractActionController;
 use Application\Form\Participante as ParticipanteForm;
 use Application\Model\Participante;
@@ -49,6 +50,20 @@ class ParticipanteController extends AbstractActionController
             )
         );
 
+        $modelRegiao = $this->getTable('Regiao')->getModels();
+
+        $arrayOptions = $modelRegiao->toArray();
+        $arrayOptionsCorrigido = [];
+        foreach($arrayOptions as $key => $value)
+            $arrayOptionsCorrigido[$value['codigo']] = $value['nome'];
+
+        $form->get('select_regiao')->setValueOptions($arrayOptionsCorrigido);
+        $form->get('select_regiao')
+            ->setValue(
+                $form->get('codigo_regiao')
+            )
+        ;
+
         if (isset($model))
             $form->bind($model);
 
@@ -84,7 +99,6 @@ class ParticipanteController extends AbstractActionController
                 'controller' => 'participante'
             )
         );
-    
     }
     
     private function getTable($name)

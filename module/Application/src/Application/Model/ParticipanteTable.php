@@ -57,7 +57,6 @@ class ParticipanteTable
         ;
 
         $data = $this->tableGateway->selectWith($select);
-//        var_dump($data);exit;
 
         return $data;
     }
