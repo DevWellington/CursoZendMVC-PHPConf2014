@@ -1,52 +1,19 @@
-ZendSkeletonApplication
+MVC em PHP com Zend Framework 2 e Zend Eclipse
 =======================
 
-Introduction
-------------
-This is a simple, skeleton application using the ZF2 MVC layer and module
-systems. This application is meant to be used as a starting place for those
-looking to get their feet wet with ZF2.
+Código referente ao exercício proposto pelo professor [Flávio Gomes da Silva Lisboa](https://twitter.com/fgsl) durante o curso que foi realizado na [PHP Conference Brasil](http://www.phpconf.com.br/) (presencial).
 
+###Abaixo segue conteúdo abordado do curso:
 
-Installation
-------------
+Neste mini-curso aprenderemos desenvolver aplicações PHP utilizando o padrão MVC implementado pelo Zend Framework 2, contando com a ajuda do Zend Eclipse PDT. Ao final do curso o aluno saberá como implementar modelos, mapeadores, controladores, formulários e visões, o essencial para iniciar uma aplicação orientada a objetos em camadas. O aluno também aprenderá como funciona o sistema de módulos do ZF2, onde cada módulo tem sua implementação MVC.
 
-Using Composer (recommended)
-----------------------------
-The recommended way to get a working copy of this project is to clone the repository
-and use `composer` to install dependencies using the `create-project` command:
+###Tópicos:
 
-    curl -s https://getcomposer.org/installer | php --
-    php composer.phar create-project -sdev --repository-url="http://packages.zendframework.com" zendframework/skeleton-application path/to/install
+1. Criando um projeto ZF2 com Zend Eclipse
+2. Integrando Zend Eclipse com outros programas
+3. Criando modelos ZF2 com Zend Eclipse
+4. Criando visões ZF2 com Zend Eclipse
+5. Criando controladores ZF2 com Zend Eclipse
+6. Controlando versões com GIT no Zend Eclipse
 
-Alternately, clone the repository and manually invoke `composer` using the shipped
-`composer.phar`:
-
-    cd my/project/dir
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git
-    cd ZendSkeletonApplication
-    php composer.phar self-update
-    php composer.phar install
-
-(The `self-update` directive is to ensure you have an up-to-date `composer.phar`
-available.)
-
-Another alternative for downloading the project is to grab it via `curl`, and
-then pass it to `tar`:
-
-    cd my/project/dir
-    curl -#L https://github.com/zendframework/ZendSkeletonApplication/tarball/master | tar xz --strip-components=1
-
-You would then invoke `composer` to install dependencies per the previous
-example.
-
-Using Git submodules
---------------------
-Alternatively, you can install using native git submodules:
-
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git --recursive
-
-Virtual Host
-------------
-Afterwards, set up a virtual host to point to the public/ directory of the
-project and you should be ready to go!
+Mais informações sobre o curso: [http://www.phpconf.com.br/handson/zend](http://www.phpconf.com.br/handson/zend)
